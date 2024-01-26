@@ -19,10 +19,16 @@
         <LinearLayout
             android:layout_width="277dp"
             android:layout_height="174dp"
+            android:layout_marginStart="67dp"
+            android:layout_marginTop="133dp"
+            android:layout_marginEnd="67dp"
+            android:layout_marginBottom="207dp"
             android:gravity="center_horizontal|center_vertical"
             android:orientation="vertical"
-            tools:layout_editor_absoluteX="67dp"
-            tools:layout_editor_absoluteY="350dp">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2">
 
             <Button
                 android:id="@+id/playBtn"
@@ -57,23 +63,32 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="91dp"
+            android:layout_marginTop="100dp"
             android:text="Simon Game"
             android:textSize="40sp"
-            tools:layout_editor_absoluteX="91dp"
-            tools:layout_editor_absoluteY="164dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button4" />
 
         <Button
             android:id="@+id/button4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="307dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="100dp"
+
             android:text="Login"
             android:textColor="@color/black"
             app:backgroundTint="@color/white"
-            tools:layout_editor_absoluteX="307dp"
-
-            tools:layout_editor_absoluteY="16dp" />
+            app:layout_constraintBottom_toTopOf="@+id/textView2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

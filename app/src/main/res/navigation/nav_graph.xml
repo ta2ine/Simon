@@ -7,9 +7,8 @@
 
     <fragment
         android:id="@+id/inGame"
-        android:name="com.example.simon.fragments.inGame"
-        android:label="fragment_in_game"
-        tools:layout="@layout/fragment_in_game" />
+        android:name="com.example.simon.fragments.InGameFragment"
+        android:label="fragment_in_game" />
     <fragment
         android:id="@+id/homeFragment2"
         android:name="com.example.simon.fragments.HomeFragment"
