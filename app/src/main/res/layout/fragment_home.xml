@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+        <!-- Supprimer ce LinearLayout s'il n'est pas utilisé -->
+        <!--<LinearLayout
+            android:layout_width="409dp"
+            android:layout_height="131dp"
+            android:orientation="vertical"
+            tools:layout_editor_absoluteX="1dp"
+            tools:layout_editor_absoluteY="218dp"></LinearLayout>-->
+
+        <LinearLayout
+            android:layout_width="277dp"
+            android:layout_height="174dp"
+            android:gravity="center_horizontal|center_vertical"
+            android:orientation="vertical"
+            tools:layout_editor_absoluteX="67dp"
+            tools:layout_editor_absoluteY="350dp">
+
+            <Button
+                android:id="@+id/playBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Play" />
+
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/radioButton1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Easy" />
+
+                <RadioButton
+                    android:id="@+id/radioButton2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Medium" />
+
+                <RadioButton
+                    android:id="@+id/radioButton3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Hard" />
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Simon Game"
+            android:textSize="40sp"
+            tools:layout_editor_absoluteX="91dp"
+            tools:layout_editor_absoluteY="164dp" />
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:textColor="@color/black"
+            app:backgroundTint="@color/white"
+            tools:layout_editor_absoluteX="307dp"
+
+            tools:layout_editor_absoluteY="16dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
