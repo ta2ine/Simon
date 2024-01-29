@@ -40,7 +40,7 @@ class HomeFragment : Fragment() {
 
         button.setOnClickListener {
             // Au clic, appeler le navController et déclencher l'action
-            findNavController().navigate(R.id.action_homeFragment2_to_inGame)
+            findNavController().navigate(R.id.action_homeFragment2_to_easyMode)
         }
     }
 }

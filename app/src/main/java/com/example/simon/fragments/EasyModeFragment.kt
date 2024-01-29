@@ -5,12 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.simon.databinding.FragmentHomeBinding
-import com.example.simon.databinding.FragmentInGameBinding
+import com.example.simon.databinding.FragmentEasyModeBinding
 
-class InGameFragment : Fragment() {
+class EasyModeFragment : Fragment() {
 
-    private lateinit var binding: FragmentInGameBinding // Data binding
+    private lateinit var binding: FragmentEasyModeBinding // Data binding
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -18,7 +17,7 @@ class InGameFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding = FragmentInGameBinding .inflate(inflater, container, false)
+        binding = FragmentEasyModeBinding .inflate(inflater, container, false)
         return binding.root
     }
 

@@ -6,15 +6,15 @@
     app:startDestination="@id/homeFragment2">
 
     <fragment
-        android:id="@+id/inGame"
-        android:name="com.example.simon.fragments.InGameFragment"
-        android:label="fragment_in_game" />
+        android:id="@+id/EasyMode"
+        android:name="com.example.simon.fragments.EasyModeFragment"
+        android:label="fragment_easy_mode" />
     <fragment
         android:id="@+id/homeFragment2"
         android:name="com.example.simon.fragments.HomeFragment"
         android:label="HomeFragment" >
         <action
-            android:id="@+id/action_homeFragment2_to_inGame"
-            app:destination="@id/inGame" />
+            android:id="@+id/action_homeFragment2_to_easyMode"
+            app:destination="@id/EasyMode" />
     </fragment>
 </navigation>
