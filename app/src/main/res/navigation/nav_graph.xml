@@ -8,7 +8,11 @@
     <fragment
         android:id="@+id/EasyMode"
         android:name="com.example.simon.fragments.EasyModeFragment"
-        android:label="fragment_easy_mode" />
+        android:label="fragment_easy_mode" >
+        <action
+            android:id="@+id/action_EasyMode_to_homeFragment2"
+            app:destination="@id/homeFragment2" />
+    </fragment>
     <fragment
         android:id="@+id/homeFragment2"
         android:name="com.example.simon.fragments.HomeFragment"
@@ -27,10 +31,18 @@
         android:id="@+id/mediumModeFragment"
         android:name="com.example.simon.fragments.MediumModeFragment"
         android:label="fragment_medium_mode"
-        tools:layout="@layout/fragment_medium_mode" />
+        tools:layout="@layout/fragment_medium_mode" >
+        <action
+            android:id="@+id/action_mediumModeFragment_to_homeFragment2"
+            app:destination="@id/homeFragment2" />
+    </fragment>
     <fragment
         android:id="@+id/hardModeFragment"
         android:name="com.example.simon.fragments.HardModeFragment"
         android:label="fragment_hard_mode"
-        tools:layout="@layout/fragment_hard_mode" />
+        tools:layout="@layout/fragment_hard_mode" >
+        <action
+            android:id="@+id/action_hardModeFragment_to_homeFragment2"
+            app:destination="@id/homeFragment2" />
+    </fragment>
 </navigation>
