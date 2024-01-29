@@ -13,7 +13,7 @@ import com.example.simon.databinding.FragmentHomeBinding
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding // Data binding
-
+//test
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
