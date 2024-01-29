@@ -14,7 +14,17 @@
         android:name="com.example.simon.fragments.HomeFragment"
         android:label="HomeFragment" >
         <action
-            android:id="@+id/action_homeFragment2_to_easyMode"
-            app:destination="@id/EasyMode" />
+            android:id="@+id/action_homeFragment2_to_hardModeFragment"
+            app:destination="@id/hardModeFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/mediumModeFragment"
+        android:name="com.example.simon.fragments.MediumModeFragment"
+        android:label="fragment_medium_mode"
+        tools:layout="@layout/fragment_medium_mode" />
+    <fragment
+        android:id="@+id/hardModeFragment"
+        android:name="com.example.simon.fragments.HardModeFragment"
+        android:label="fragment_hard_mode"
+        tools:layout="@layout/fragment_hard_mode" />
 </navigation>

@@ -13,7 +13,7 @@ import com.example.simon.databinding.FragmentHomeBinding
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding // Data binding
-//test
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -40,7 +40,7 @@ class HomeFragment : Fragment() {
 
         button.setOnClickListener {
             // Au clic, appeler le navController et déclencher l'action
-            findNavController().navigate(R.id.action_homeFragment2_to_easyMode)
+            findNavController().navigate(R.id.action_homeFragment2_to_hardModeFragment)
         }
     }
 }
