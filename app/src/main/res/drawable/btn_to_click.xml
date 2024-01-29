@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <solid android:color="#FF0000" /> <!-- Couleur de fond lorsque le bouton est pressé -->
+            <corners android:radius="8dp" /> <!-- Coins arrondis -->
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#00FF00" /> <!-- Couleur de fond par défaut -->
+            <corners android:radius="8dp" />
+        </shape>
+    </item>
+</selector>

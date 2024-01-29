@@ -33,7 +33,7 @@ class HomeFragment : Fragment() {
         val mediumBtn = binding.mediumBtn
         val hardBtn = binding.hardBtn
 
-        mediumBtn.isChecked = true
+        easyBtn.isChecked = true
 
         playButton.setOnClickListener {
             val checkedId = binding.radioGroup.checkedRadioButtonId

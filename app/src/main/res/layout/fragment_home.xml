@@ -8,14 +8,6 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
-        <!-- Supprimer ce LinearLayout s'il n'est pas utilisé -->
-        <!--<LinearLayout
-            android:layout_width="409dp"
-            android:layout_height="131dp"
-            android:orientation="vertical"
-            tools:layout_editor_absoluteX="1dp"
-            tools:layout_editor_absoluteY="218dp"></LinearLayout>-->
-
         <LinearLayout
             android:layout_width="277dp"
             android:layout_height="174dp"
