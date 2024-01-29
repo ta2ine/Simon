@@ -27,20 +27,28 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Recupere le bouton
-        val button = binding.playBtn
+        val playButton = binding.playBtn
 
-        // positionner un OnClickListener sur le bouton
-        /* Cette methode est identique à celle du dessous
-        button.setOnClickListener(object: View.OnClickListener {
-            override fun onClick(p0: View?) {
-                // Au clic, appeler le navController et déclencher l'action
+        val easyBtn = binding.easyBtn
+        val mediumBtn = binding.mediumBtn
+        val hardBtn = binding.hardBtn
+
+        mediumBtn.isChecked = true
+
+        playButton.setOnClickListener {
+            val checkedId = binding.radioGroup.checkedRadioButtonId
+            if (checkedId != -1) {
+                val checkedAnswer = binding.radioGroup.indexOfChild(view.findViewById(checkedId))
+                if (checkedAnswer == 0) {
+                    findNavController().navigate(R.id.action_homeFragment2_to_EasyMode)
+                } else if (checkedAnswer == 1){
+                    findNavController().navigate(R.id.action_homeFragment2_to_mediumModeFragment2)
+                }
+                else if (checkedAnswer == 2){
+                    findNavController().navigate(R.id.action_homeFragment2_to_hardModeFragment)
+                }
             }
-        })*/
-
-        button.setOnClickListener {
-            // Au clic, appeler le navController et déclencher l'action
-            findNavController().navigate(R.id.action_homeFragment2_to_hardModeFragment)
         }
+
     }
 }

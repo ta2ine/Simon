@@ -16,6 +16,12 @@
         <action
             android:id="@+id/action_homeFragment2_to_hardModeFragment"
             app:destination="@id/hardModeFragment" />
+        <action
+            android:id="@+id/action_homeFragment2_to_EasyMode"
+            app:destination="@id/EasyMode" />
+        <action
+            android:id="@+id/action_homeFragment2_to_mediumModeFragment2"
+            app:destination="@id/mediumModeFragment" />
     </fragment>
     <fragment
         android:id="@+id/mediumModeFragment"
