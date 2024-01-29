@@ -30,7 +30,7 @@ class HardModeFragment : Fragment() {
         val button = view.findViewById<Button>(R.id.homeBtn)
 
         button.setOnClickListener {
-            findNavController().navigate(R.id.action_EasyMode_to_homeFragment2)
+            findNavController().navigate(R.id.action_hardModeFragment_to_homeFragment2)
         }
     }
 }
