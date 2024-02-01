@@ -103,8 +103,8 @@ class EasyModeFragment : Fragment() {
 
     private fun addSelfButtonToSequenceClient(sequenceClient: MutableList<Button>, button: Button) {
         sequenceClient.add(button)
-        val sequenceText = sequenceClient.joinToString(", ") { it.text.toString() }
-        Log.d("SequenceClient", "${button.text} ajouté à la séquence : $sequenceText")
+        val sequenceText = sequenceClient.joinToString(", ") { it.id.toString() }
+        Log.d("SequenceClient", "${button.id} ajouté à la séquence : $sequenceText")
     }
 
 
@@ -131,8 +131,8 @@ class EasyModeFragment : Fragment() {
 
         buttonList.add(newButton)
 
-        val sequenceText = buttonList.joinToString(", ") { it.text.toString() }
-        Log.d("SequenceClient", "${newButton.text} ajouté à la séquence : $sequenceText")
+        val sequenceText = buttonList.joinToString(", ") { it.id.toString() }
+        Log.d("SequenceClient", "${newButton.id} ajouté à la séquence : $sequenceText")
     }
 
 }
