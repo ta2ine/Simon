@@ -12,8 +12,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.simon.R
 import com.example.simon.databinding.FragmentEasyModeBinding
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import kotlin.random.Random
 
 class EasyModeFragment : Fragment() {
@@ -68,11 +70,8 @@ class EasyModeFragment : Fragment() {
         }
 
         val sequenceGame = mutableListOf(getRandomBtn(btn1, btn2, btn3, btn4))
-        addRandomBtnTosequence(sequenceGame, btn1, btn2, btn3, btn4)
-        addRandomBtnTosequence(sequenceGame, btn1, btn2, btn3, btn4)
-        addRandomBtnTosequence(sequenceGame, btn1, btn2, btn3, btn4)
-
         lightOnOffBtn(sequenceGame)
+        startCheckingSequence(sequenceGame,sequenceClient,btn1, btn2, btn3, btn4)
     }
 
     private fun updateTestText(text: String) {
@@ -135,4 +134,48 @@ class EasyModeFragment : Fragment() {
         Log.d("SequenceClient", "${newButton.id} ajouté à la séquence : $sequenceText")
     }
 
+    private fun startCheckingSequence(sequenceGame: MutableList<Button>, sequenceClient: MutableList<Button>, btn1: Button, btn2: Button, btn3: Button, btn4: Button) {
+        lifecycleScope.launch {
+            while (true) {
+                delay(1000) // Vérifier la séquence chaque seconde (ajustez selon vos besoins)
+
+                withContext(Dispatchers.Main) {
+                    checkSequence(sequenceGame, sequenceClient, btn1, btn2, btn3, btn4)
+                }
+            }
+        }
+    }
+
+    private fun checkSequence(sequenceGame: MutableList<Button>, sequenceClient: MutableList<Button>, btn1: Button, btn2: Button, btn3: Button, btn4: Button) {
+        val minSize = if (sequenceGame.size < sequenceClient.size) sequenceGame.size else sequenceClient.size
+
+        for (i in 0 until minSize) {
+            val buttonGame = sequenceGame[i]
+            val buttonClient = sequenceClient[i]
+
+            if (buttonGame != buttonClient) {
+                // Les boutons ne correspondent pas, gérer l'erreur ici
+                showToast("Mauvaise séquence !")
+                // Réinitialiser les séquences
+                clearSequence(sequenceGame)
+                clearSequence(sequenceClient)
+                // Lancer une nouvelle séquence
+                addRandomBtnTosequence(sequenceGame, btn1, btn2, btn3, btn4)
+                lightOnOffBtn(sequenceGame)
+                return
+            }
+        }
+
+        // Les premières itérations correspondent, continuer à vérifier
+        if (sequenceGame.size == sequenceClient.size) {
+            // La séquence client correspond entièrement à la séquence du jeu
+            showToast("Bonne séquence !")
+            // Réinitialiser la séquence client
+            clearSequence(sequenceClient)
+            // Ajouter un nouveau bouton à la séquence du jeu
+            addRandomBtnTosequence(sequenceGame, btn1, btn2, btn3, btn4)
+            // Continuer le jeu
+            lightOnOffBtn(sequenceGame)
+        }
+    }
 }
