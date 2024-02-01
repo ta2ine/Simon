@@ -148,9 +148,11 @@ class EasyModeFragment : Fragment() {
         for (i in 0 until minSize) {
             val buttonGame = sequenceGame[i]
             val buttonClient = sequenceClient[i]
-
+            //fail
             if (buttonGame != buttonClient) {
                 // Réinitialiser les séquences
+                findNavController().navigate(R.id.action_EasyMode_to_resultFragment)
+
                 clearSequence(sequenceGame)
                 clearSequence(sequenceClient)
                 // Lancer une nouvelle séquence
@@ -160,7 +162,7 @@ class EasyModeFragment : Fragment() {
             }
         }
 
-        // Les premières itérations correspondent, continuer à vérifier
+        // success
         if (sequenceGame.size == sequenceClient.size) {
             // La séquence client correspond entièrement à la séquence du jeu
             score = incrementScore(score)
