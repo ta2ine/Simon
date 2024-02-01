@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -37,9 +36,7 @@ class EasyModeFragment : Fragment() {
         val btn2 = view.findViewById<Button>(R.id.btn2)
         val btn3 = view.findViewById<Button>(R.id.btn3)
         val btn4 = view.findViewById<Button>(R.id.btn4)
-        val testText = view.findViewById<TextView>(R.id.testText)
 
-        // Initialisation des boutons
         btn1.setBackgroundResource(R.drawable.btn_normal)
         btn2.setBackgroundResource(R.drawable.btn_normal)
         btn3.setBackgroundResource(R.drawable.btn_normal)
@@ -49,7 +46,6 @@ class EasyModeFragment : Fragment() {
             findNavController().navigate(R.id.action_EasyMode_to_homeFragment2)
         }
 
-        // Ajout des listeners aux boutons
         btn1.setOnClickListener {
             updateTestText("bouton 1")
         }
@@ -63,10 +59,10 @@ class EasyModeFragment : Fragment() {
             updateTestText("bouton 4")
         }
 
-        val sequence = mutableListOf(btn1)
-        addButtonToList(sequence, btn1, btn2, btn3, btn4)
-        addButtonToList(sequence, btn1, btn2, btn3, btn4)
-        addButtonToList(sequence, btn1, btn2, btn3, btn4)
+        val sequence = mutableListOf(getRandomBtn(btn1, btn2, btn3, btn4))
+        addRandomBtnTosequence(sequence, btn1, btn2, btn3, btn4)
+        addRandomBtnTosequence(sequence, btn1, btn2, btn3, btn4)
+        addRandomBtnTosequence(sequence, btn1, btn2, btn3, btn4)
 
         lightOnOffBtn(sequence)
     }
@@ -93,20 +89,25 @@ class EasyModeFragment : Fragment() {
         }
     }
 
-    private fun addButtonToList(buttonList: MutableList<Button>, btn1: Button, btn2: Button, btn3: Button, btn4: Button) {
-        val random = Random
+    private fun getRandomBtn(btn1: Button, btn2: Button, btn3: Button, btn4: Button): Button {
+        val random = Random.nextInt(4) + 1
+        return when (random) {
+            1 -> btn1
+            2 -> btn2
+            3 -> btn3
+            else -> btn4
+        }
+    }
+
+    private fun addRandomBtnTosequence(buttonList: MutableList<Button>, btn1: Button, btn2: Button, btn3: Button, btn4: Button) {
         val lastIndex = buttonList.lastIndex
         var newButton: Button
 
         do {
-            newButton = when (random.nextInt(4) + 1) {
-                1 -> btn1
-                2 -> btn2
-                3 -> btn3
-                else -> btn4
-            }
+            newButton = getRandomBtn(btn1, btn2, btn3, btn4)
         } while (newButton == buttonList.last())
 
         buttonList.add(newButton)
     }
+
 }
