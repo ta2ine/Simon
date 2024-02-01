@@ -21,6 +21,7 @@ import kotlin.random.Random
 class EasyModeFragment : Fragment() {
 
     private lateinit var binding: FragmentEasyModeBinding // Data binding
+    private var score = 0
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,28 +51,25 @@ class EasyModeFragment : Fragment() {
             findNavController().navigate(R.id.action_EasyMode_to_homeFragment2)
         }
 
-        val sequenceClient: MutableList<Button> = mutableListOf() // Liste pour stocker les boutons
+        val sequenceClient: MutableList<Button> = mutableListOf()
 
         btn1.setOnClickListener {
-            updateTestText("bouton 1")
             addSelfButtonToSequenceClient(sequenceClient, btn1)
         }
         btn2.setOnClickListener {
-            updateTestText("bouton 2")
             addSelfButtonToSequenceClient(sequenceClient, btn2)
         }
         btn3.setOnClickListener {
-            updateTestText("bouton 3")
             addSelfButtonToSequenceClient(sequenceClient, btn3)
         }
         btn4.setOnClickListener {
-            updateTestText("bouton 4")
             addSelfButtonToSequenceClient(sequenceClient, btn4)
         }
 
         val sequenceGame = mutableListOf(getRandomBtn(btn1, btn2, btn3, btn4))
+        updateTestText("SCORE : 0")
         lightOnOffBtn(sequenceGame)
-        startCheckingSequence(sequenceGame,sequenceClient,btn1, btn2, btn3, btn4)
+        startCheckingSequence(sequenceGame, sequenceClient, btn1, btn2, btn3, btn4)
     }
 
     private fun updateTestText(text: String) {
@@ -106,7 +104,6 @@ class EasyModeFragment : Fragment() {
         Log.d("SequenceClient", "${button.id} ajouté à la séquence : $sequenceText")
     }
 
-
     private fun showToast(message: String) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
@@ -122,7 +119,6 @@ class EasyModeFragment : Fragment() {
     }
 
     private fun addRandomBtnTosequence(buttonList: MutableList<Button>, btn1: Button, btn2: Button, btn3: Button, btn4: Button) {
-        val lastIndex = buttonList.lastIndex
         var newButton: Button
         do {
             newButton = getRandomBtn(btn1, btn2, btn3, btn4)
@@ -154,8 +150,6 @@ class EasyModeFragment : Fragment() {
             val buttonClient = sequenceClient[i]
 
             if (buttonGame != buttonClient) {
-                // Les boutons ne correspondent pas, gérer l'erreur ici
-                showToast("Mauvaise séquence !")
                 // Réinitialiser les séquences
                 clearSequence(sequenceGame)
                 clearSequence(sequenceClient)
@@ -169,7 +163,9 @@ class EasyModeFragment : Fragment() {
         // Les premières itérations correspondent, continuer à vérifier
         if (sequenceGame.size == sequenceClient.size) {
             // La séquence client correspond entièrement à la séquence du jeu
-            showToast("Bonne séquence !")
+            score = incrementScore(score)
+            updateTestText("SCORE : ${score.toString()}")
+
             // Réinitialiser la séquence client
             clearSequence(sequenceClient)
             // Ajouter un nouveau bouton à la séquence du jeu
@@ -178,4 +174,9 @@ class EasyModeFragment : Fragment() {
             lightOnOffBtn(sequenceGame)
         }
     }
+
+    private fun incrementScore(score: Int): Int {
+        return score + 1
+    }
+
 }
