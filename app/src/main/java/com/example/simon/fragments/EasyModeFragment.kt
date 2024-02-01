@@ -1,3 +1,5 @@
+package com.example.simon.fragments
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -5,10 +7,12 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.simon.R
 import com.example.simon.databinding.FragmentEasyModeBinding
-import kotlinx.coroutines.*
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import kotlin.random.Random
 
 class EasyModeFragment : Fragment() {
@@ -80,7 +84,7 @@ class EasyModeFragment : Fragment() {
     }
 
     private fun lightOnOffBtn(buttonList: MutableList<Button>) {
-        runBlocking {
+        lifecycleScope.launch {
             for (button in buttonList) {
                 lightOnBtn(button)
                 delay(1000) // Attendre 1 seconde
@@ -88,7 +92,6 @@ class EasyModeFragment : Fragment() {
             }
         }
     }
-
 
     private fun addButtonToList(buttonList: MutableList<Button>, btn1: Button, btn2: Button, btn3: Button, btn4: Button) {
         val random = Random
