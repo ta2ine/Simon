@@ -12,7 +12,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="EASY MODE"
-            android:textSize="50sp" />
+            android:textSize="50sp"
+            />
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -19,14 +19,13 @@ class SimonGame(private val lifecycleScope: LifecycleCoroutineScope,
                 private val btnIds: List<Int>) {
 
     private var score = 0
+    val btns = mutableListOf<Button>()
 
     fun playGame() {
         val sequenceClient: MutableList<Button> = mutableListOf()
-        val btns = mutableListOf<Button>()
 
         btnIds.forEach { btnId ->
             val btn = view.findViewById<Button>(btnId)
-            btn.setBackgroundResource(R.drawable.btn_normal)
             btn.setOnClickListener {
                 addSelfButtonToSequenceClient(sequenceClient, btn)
             }
@@ -34,12 +33,11 @@ class SimonGame(private val lifecycleScope: LifecycleCoroutineScope,
         }
 
         val sequenceGame = mutableListOf(getRandomBtn(btns))
-
+        setColor()
         updateScoreText("SCORE : 0")
         lightOnOffBtn(sequenceGame)
         startCheckingSequence(sequenceGame, sequenceClient, btns)
     }
-
 
     private fun getBindingInstance(view: View): Any {
         val method = bindingClass.getDeclaredMethod("bind", View::class.java)
@@ -49,12 +47,29 @@ class SimonGame(private val lifecycleScope: LifecycleCoroutineScope,
         textView.text = text
     }
 
+    private fun setMap(): Map<Button, Int> {
+        val colorList = listOf(R.drawable.btn_blue, R.drawable.btn_green, R.drawable.btn_red, R.drawable.btn_yellow)
+        val map = btns.zip(colorList).toMap()
+        return map
+    }
+
+    private fun setColor(){
+        val map = setMap()
+        map.forEach { (button, colorResId) ->
+            button.setBackgroundResource(colorResId)
+        }
+    }
+
     private fun lightOnBtn(button: Button) {
         button.setBackgroundResource(R.drawable.btn_to_click)
     }
 
     private fun lightOffBtn(button: Button) {
-        button.setBackgroundResource(R.drawable.btn_normal)
+        val map = setMap()
+        val colorResId = map[button]
+        if (colorResId != null) {
+            button.setBackgroundResource(colorResId)
+        }
     }
 
     private fun lightOnOffBtn(buttonList: MutableList<Button>) {
@@ -63,6 +78,7 @@ class SimonGame(private val lifecycleScope: LifecycleCoroutineScope,
                 lightOnBtn(button)
                 delay(1000) // Attendre 1 seconde
                 lightOffBtn(button)
+                delay(200)
             }
         }
     }
@@ -82,7 +98,6 @@ class SimonGame(private val lifecycleScope: LifecycleCoroutineScope,
         return btns[randomIndex]
     }
 
-
     private fun addRandomBtnTosequence(buttonList: MutableList<Button>, buttons: List<Button>) {
         var newButton: Button
         do {
@@ -94,7 +109,6 @@ class SimonGame(private val lifecycleScope: LifecycleCoroutineScope,
         val sequenceText = buttonList.joinToString(", ") { it.id.toString() }
         Log.d("SequenceClient", "${newButton.id} ajouté à la séquence : $sequenceText")
     }
-
 
     private fun startCheckingSequence(sequenceGame: MutableList<Button>, sequenceClient: MutableList<Button>, buttons: List<Button>) {
         lifecycleScope.launch {
@@ -123,7 +137,6 @@ class SimonGame(private val lifecycleScope: LifecycleCoroutineScope,
             }
         }
 
-        // success
         if (sequenceGame.size == sequenceClient.size) {
             // La séquence client correspond entièrement à la séquence du jeu
             score = incrementScore(score)
