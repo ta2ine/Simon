@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleCoroutineScope
 import androidx.navigation.fragment.findNavController
+import com.example.simon.fragments.ResultFragment
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.random.Random
@@ -39,10 +40,6 @@ class SimonGame(private val lifecycleScope: LifecycleCoroutineScope,
         startCheckingSequence(sequenceGame, sequenceClient, btns)
     }
 
-    private fun getBindingInstance(view: View): Any {
-        val method = bindingClass.getDeclaredMethod("bind", View::class.java)
-        return method.invoke(null, view)
-    }
     private fun updateScoreText(text: String) {
         textView.text = text
     }
@@ -132,6 +129,7 @@ class SimonGame(private val lifecycleScope: LifecycleCoroutineScope,
 
                 val result = checkSequence(sequenceGame, sequenceClient, buttons)
                 if (!result) {
+                    sendScore()
                     fragment.findNavController().navigate(R.id.resultFragment)
                     break
                 }
@@ -148,13 +146,14 @@ class SimonGame(private val lifecycleScope: LifecycleCoroutineScope,
 
             if (buttonGame != buttonClient) {
                 // Réinitialiser les séquences
+
                 return false
             }
         }
 
         if (sequenceGame.size == sequenceClient.size) {
             // La séquence client correspond entièrement à la séquence du jeu
-            score = incrementScore(score)
+            score = incrementScore()
             updateScoreText("SCORE : ${score.toString()}")
 
             // Réinitialiser la séquence client
@@ -167,7 +166,13 @@ class SimonGame(private val lifecycleScope: LifecycleCoroutineScope,
         return true
     }
 
-    private fun incrementScore(score: Int): Int {
-        return score + 1
+    private fun incrementScore(): Int {
+        score = score + 1
+        return score
+    }
+
+    private fun sendScore() {
+        val action = (score)
+        fragment.findNavController().navigate(action)
     }
 }
