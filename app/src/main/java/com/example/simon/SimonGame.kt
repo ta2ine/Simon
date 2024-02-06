@@ -86,11 +86,13 @@ class SimonGame(private val lifecycleScope: LifecycleCoroutineScope,
     private fun lightOnOffBtn(buttonList: MutableList<Button>) {
         lifecycleScope.launch {
             makeButtonsUnclickable()
+            delay(1000)
             for (button in buttonList) {
-                delay(300)
                 lightOnBtn(button)
                 delay(1000) // Attendre 1 seconde
                 lightOffBtn(button)
+                delay(200)
+
             }
             makeButtonsClickable()
         }
