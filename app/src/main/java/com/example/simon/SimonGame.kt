@@ -48,7 +48,7 @@ class SimonGame(private val lifecycleScope: LifecycleCoroutineScope,
     }
 
     private fun setMap(): Map<Button, Int> {
-        val colorList = listOf(R.drawable.btn_blue, R.drawable.btn_green, R.drawable.btn_red, R.drawable.btn_yellow)
+        val colorList = listOf(R.drawable.btn_blue,R.drawable.btn_green,R.drawable.btn_orange,R.drawable.btn_yellow,R.drawable.btn_cyan,R.drawable.btn_pink,R.drawable.btn_purple,R.drawable.btn_red,R.drawable.btn_purple,R.drawable.btn_orange,R.drawable.btn_blue,R.drawable.btn_cyan,R.drawable.btn_pink,R.drawable.btn_red,R.drawable.btn_yellow,R.drawable.btn_green)
         val map = btns.zip(colorList).toMap()
         return map
     }
@@ -71,15 +71,28 @@ class SimonGame(private val lifecycleScope: LifecycleCoroutineScope,
             button.setBackgroundResource(colorResId)
         }
     }
+    private fun makeButtonsUnclickable() {
+        for (button in btns) {
+            button.isEnabled = false
+        }
+    }
+
+    private fun makeButtonsClickable() {
+        for (button in btns) {
+            button.isEnabled = true
+        }
+    }
 
     private fun lightOnOffBtn(buttonList: MutableList<Button>) {
         lifecycleScope.launch {
+            makeButtonsUnclickable()
             for (button in buttonList) {
+                delay(300)
                 lightOnBtn(button)
                 delay(1000) // Attendre 1 seconde
                 lightOffBtn(button)
-                delay(200)
             }
+            makeButtonsClickable()
         }
     }
 
