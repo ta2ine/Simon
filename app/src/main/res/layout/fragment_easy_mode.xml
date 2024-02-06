@@ -11,7 +11,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="MODE FACILE"
+            android:text="EASY MODE"
             android:textSize="50sp" />
 
         <LinearLayout
@@ -75,7 +75,7 @@
             android:id="@+id/homeBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:text="Home" />
 
     </LinearLayout>
 
