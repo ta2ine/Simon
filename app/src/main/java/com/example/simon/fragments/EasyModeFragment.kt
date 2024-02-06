@@ -32,12 +32,19 @@ class EasyModeFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
 
-        val button = view.findViewById<Button>(R.id.homeBtn)
-        val sequenceClient: MutableList<Button> = mutableListOf()
+        val homeButton = view.findViewById<Button>(R.id.homeBtn)
+        homeButton.setOnClickListener {
+            findNavController().navigate(R.id.action_EasyMode_to_homeFragment2)
+        }
 
         val btnIds = listOf(R.id.btn1, R.id.btn2, R.id.btn3, R.id.btn4)
+
+        playGame(view, btnIds)
+    }
+
+    fun playGame(view: View, btnIds: List<Int>) {
+        val sequenceClient: MutableList<Button> = mutableListOf()
         val btns = mutableListOf<Button>()
 
         btnIds.forEach { btnId ->
@@ -47,10 +54,6 @@ class EasyModeFragment : Fragment() {
                 addSelfButtonToSequenceClient(sequenceClient, btn)
             }
             btns.add(btn)
-        }
-
-        button.setOnClickListener {
-            findNavController().navigate(R.id.action_EasyMode_to_homeFragment2)
         }
 
         val sequenceGame = mutableListOf(getRandomBtn(btns))
@@ -157,7 +160,6 @@ class EasyModeFragment : Fragment() {
         }
         return true
     }
-
 
     private fun incrementScore(score: Int): Int {
         return score + 1
