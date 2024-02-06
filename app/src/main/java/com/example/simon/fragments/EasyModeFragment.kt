@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.simon.R
 import com.example.simon.databinding.FragmentEasyModeBinding
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -135,30 +136,25 @@ class EasyModeFragment : Fragment() {
             while (true) {
                 delay(1000) // Vérifier la séquence chaque seconde (ajustez selon vos besoins)
 
-                withContext(Dispatchers.Main) {
-                    checkSequence(sequenceGame, sequenceClient, btn1, btn2, btn3, btn4)
+                val result = checkSequence(sequenceGame, sequenceClient, btn1, btn2, btn3, btn4)
+                if (!result) {
+                    findNavController().navigate(R.id.action_EasyMode_to_resultFragment)
+                    break
                 }
             }
         }
     }
 
-    private fun checkSequence(sequenceGame: MutableList<Button>, sequenceClient: MutableList<Button>, btn1: Button, btn2: Button, btn3: Button, btn4: Button) {
-        val minSize = if (sequenceGame.size < sequenceClient.size) sequenceGame.size else sequenceClient.size
+    private fun checkSequence(sequenceGame: MutableList<Button>, sequenceClient: MutableList<Button>, btn1: Button, btn2: Button, btn3: Button, btn4: Button): Boolean {
+        val minSize = minOf(sequenceGame.size, sequenceClient.size)
 
         for (i in 0 until minSize) {
             val buttonGame = sequenceGame[i]
             val buttonClient = sequenceClient[i]
-            //fail
+
             if (buttonGame != buttonClient) {
                 // Réinitialiser les séquences
-                findNavController().navigate(R.id.action_EasyMode_to_resultFragment)
-
-                clearSequence(sequenceGame)
-                clearSequence(sequenceClient)
-                // Lancer une nouvelle séquence
-                addRandomBtnTosequence(sequenceGame, btn1, btn2, btn3, btn4)
-                lightOnOffBtn(sequenceGame)
-                return
+                return false
             }
         }
 
@@ -175,7 +171,10 @@ class EasyModeFragment : Fragment() {
             // Continuer le jeu
             lightOnOffBtn(sequenceGame)
         }
+        return true
     }
+
+
 
     private fun incrementScore(score: Int): Int {
         return score + 1
