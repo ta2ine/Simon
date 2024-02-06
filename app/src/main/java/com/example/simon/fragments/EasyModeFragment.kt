@@ -174,8 +174,6 @@ class EasyModeFragment : Fragment() {
         return true
     }
 
-
-
     private fun incrementScore(score: Int): Int {
         return score + 1
     }
