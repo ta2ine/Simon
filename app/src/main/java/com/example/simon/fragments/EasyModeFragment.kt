@@ -12,11 +12,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.simon.R
 import com.example.simon.databinding.FragmentEasyModeBinding
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import kotlin.random.Random
 
 class EasyModeFragment : Fragment() {
@@ -38,40 +35,30 @@ class EasyModeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val button = view.findViewById<Button>(R.id.homeBtn)
-        val btn1 = view.findViewById<Button>(R.id.btn1)
-        val btn2 = view.findViewById<Button>(R.id.btn2)
-        val btn3 = view.findViewById<Button>(R.id.btn3)
-        val btn4 = view.findViewById<Button>(R.id.btn4)
+        val sequenceClient: MutableList<Button> = mutableListOf()
 
-        btn1.setBackgroundResource(R.drawable.btn_normal)
-        btn2.setBackgroundResource(R.drawable.btn_normal)
-        btn3.setBackgroundResource(R.drawable.btn_normal)
-        btn4.setBackgroundResource(R.drawable.btn_normal)
+        val btnIds = listOf(R.id.btn1, R.id.btn2, R.id.btn3, R.id.btn4)
+        val btns = mutableListOf<Button>()
+
+        btnIds.forEach { btnId ->
+            val btn = view.findViewById<Button>(btnId)
+            btn.setBackgroundResource(R.drawable.btn_normal)
+            btn.setOnClickListener {
+                addSelfButtonToSequenceClient(sequenceClient, btn)
+            }
+            btns.add(btn)
+        }
 
         button.setOnClickListener {
             findNavController().navigate(R.id.action_EasyMode_to_homeFragment2)
         }
 
-        val sequenceClient: MutableList<Button> = mutableListOf()
-
-        btn1.setOnClickListener {
-            addSelfButtonToSequenceClient(sequenceClient, btn1)
-        }
-        btn2.setOnClickListener {
-            addSelfButtonToSequenceClient(sequenceClient, btn2)
-        }
-        btn3.setOnClickListener {
-            addSelfButtonToSequenceClient(sequenceClient, btn3)
-        }
-        btn4.setOnClickListener {
-            addSelfButtonToSequenceClient(sequenceClient, btn4)
-        }
-
-        val sequenceGame = mutableListOf(getRandomBtn(btn1, btn2, btn3, btn4))
+        val sequenceGame = mutableListOf(getRandomBtn(btns))
         updateTestText("SCORE : 0")
         lightOnOffBtn(sequenceGame)
-        startCheckingSequence(sequenceGame, sequenceClient, btn1, btn2, btn3, btn4)
+        startCheckingSequence(sequenceGame, sequenceClient, btns)
     }
+
 
     private fun updateTestText(text: String) {
         binding.testText.text = text
@@ -109,21 +96,17 @@ class EasyModeFragment : Fragment() {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 
-    private fun getRandomBtn(btn1: Button, btn2: Button, btn3: Button, btn4: Button): Button {
-        val random = Random.nextInt(4) + 1
-        return when (random) {
-            1 -> btn1
-            2 -> btn2
-            3 -> btn3
-            else -> btn4
-        }
+    private fun getRandomBtn(btns: List<Button>): Button {
+        val randomIndex = Random.nextInt(btns.size)
+        return btns[randomIndex]
     }
 
-    private fun addRandomBtnTosequence(buttonList: MutableList<Button>, btn1: Button, btn2: Button, btn3: Button, btn4: Button) {
+
+    private fun addRandomBtnTosequence(buttonList: MutableList<Button>, buttons: List<Button>) {
         var newButton: Button
         do {
-            newButton = getRandomBtn(btn1, btn2, btn3, btn4)
-        } while (newButton == buttonList.last())
+            newButton = getRandomBtn(buttons)
+        } while (newButton == buttonList.lastOrNull())
 
         buttonList.add(newButton)
 
@@ -131,12 +114,13 @@ class EasyModeFragment : Fragment() {
         Log.d("SequenceClient", "${newButton.id} ajouté à la séquence : $sequenceText")
     }
 
-    private fun startCheckingSequence(sequenceGame: MutableList<Button>, sequenceClient: MutableList<Button>, btn1: Button, btn2: Button, btn3: Button, btn4: Button) {
+
+    private fun startCheckingSequence(sequenceGame: MutableList<Button>, sequenceClient: MutableList<Button>, buttons: List<Button>) {
         lifecycleScope.launch {
             while (true) {
                 delay(1000) // Vérifier la séquence chaque seconde (ajustez selon vos besoins)
 
-                val result = checkSequence(sequenceGame, sequenceClient, btn1, btn2, btn3, btn4)
+                val result = checkSequence(sequenceGame, sequenceClient, buttons)
                 if (!result) {
                     findNavController().navigate(R.id.action_EasyMode_to_resultFragment)
                     break
@@ -145,7 +129,7 @@ class EasyModeFragment : Fragment() {
         }
     }
 
-    private fun checkSequence(sequenceGame: MutableList<Button>, sequenceClient: MutableList<Button>, btn1: Button, btn2: Button, btn3: Button, btn4: Button): Boolean {
+    private fun checkSequence(sequenceGame: MutableList<Button>, sequenceClient: MutableList<Button>, buttons: List<Button>): Boolean {
         val minSize = minOf(sequenceGame.size, sequenceClient.size)
 
         for (i in 0 until minSize) {
@@ -167,12 +151,13 @@ class EasyModeFragment : Fragment() {
             // Réinitialiser la séquence client
             clearSequence(sequenceClient)
             // Ajouter un nouveau bouton à la séquence du jeu
-            addRandomBtnTosequence(sequenceGame, btn1, btn2, btn3, btn4)
+            addRandomBtnTosequence(sequenceGame, buttons)
             // Continuer le jeu
             lightOnOffBtn(sequenceGame)
         }
         return true
     }
+
 
     private fun incrementScore(score: Int): Int {
         return score + 1
