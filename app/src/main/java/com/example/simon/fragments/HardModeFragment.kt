@@ -5,9 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.simon.R
+import com.example.simon.SimonGame
 import com.example.simon.databinding.FragmentHardModeBinding
 
 class HardModeFragment : Fragment() {
@@ -28,9 +31,20 @@ class HardModeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val button = view.findViewById<Button>(R.id.homeBtn)
-
         button.setOnClickListener {
             findNavController().navigate(R.id.action_hardModeFragment_to_homeFragment2)
         }
+
+        val lifecycleScope = viewLifecycleOwner.lifecycleScope
+        val btnIds = listOf(R.id.btn1, R.id.btn2, R.id.btn3, R.id.btn4,R.id.btn5,R.id.btn6,R.id.btn7,R.id.btn8,R.id.btn9,R.id.btn10,R.id.btn11,R.id.btn12,R.id.btn13,R.id.btn14,R.id.btn15,R.id.btn16)
+        val scoreText = view.findViewById<TextView>(R.id.scoreText)
+
+        val simonGame = SimonGame(lifecycleScope,
+            this::class.java,
+            scoreText,
+            this,
+            view,
+            btnIds)
+        simonGame.playGame()
     }
 }

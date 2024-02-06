@@ -41,15 +41,15 @@ class EasyModeFragment : Fragment() {
         }
 
         val lifecycleScope = viewLifecycleOwner.lifecycleScope
-
         val btnIds = listOf(R.id.btn1, R.id.btn2, R.id.btn3, R.id.btn4)
-
         val scoreText = view.findViewById<TextView>(R.id.scoreText)
+
         val simonGame = SimonGame(lifecycleScope,
             this::class.java,
             scoreText,
             this,
-            view,btnIds)
+            view,
+            btnIds)
         simonGame.playGame()
     }
 
