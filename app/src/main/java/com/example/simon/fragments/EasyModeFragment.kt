@@ -45,7 +45,6 @@ class EasyModeFragment : Fragment() {
         val scoreText = view.findViewById<TextView>(R.id.scoreText)
 
         val simonGame = SimonGame(lifecycleScope,
-            this::class.java,
             scoreText,
             this,
             view,

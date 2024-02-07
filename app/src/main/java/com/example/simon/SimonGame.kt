@@ -13,7 +13,6 @@ import kotlinx.coroutines.launch
 import kotlin.random.Random
 
 class SimonGame(private val lifecycleScope: LifecycleCoroutineScope,
-                private val bindingClass: Class<*>,
                 private val textView: TextView,
                 private val fragment: Fragment,
                 private val view: View,
@@ -45,7 +44,22 @@ class SimonGame(private val lifecycleScope: LifecycleCoroutineScope,
     }
 
     private fun setMap(): Map<Button, Int> {
-        val colorList = listOf(R.drawable.btn_blue,R.drawable.btn_green,R.drawable.btn_orange,R.drawable.btn_yellow,R.drawable.btn_cyan,R.drawable.btn_pink,R.drawable.btn_purple,R.drawable.btn_red,R.drawable.btn_purple,R.drawable.btn_orange,R.drawable.btn_blue,R.drawable.btn_cyan,R.drawable.btn_pink,R.drawable.btn_red,R.drawable.btn_yellow,R.drawable.btn_green)
+        val colorList = listOf(R.drawable.btn_blue,
+            R.drawable.btn_green,
+            R.drawable.btn_orange,
+            R.drawable.btn_yellow,
+            R.drawable.btn_cyan,
+            R.drawable.btn_pink,
+            R.drawable.btn_purple,
+            R.drawable.btn_red,
+            R.drawable.btn_purple,
+            R.drawable.btn_orange,
+            R.drawable.btn_blue,
+            R.drawable.btn_cyan,
+            R.drawable.btn_pink,
+            R.drawable.btn_red,
+            R.drawable.btn_yellow,
+            R.drawable.btn_green)
         val map = btns.zip(colorList).toMap()
         return map
     }
@@ -144,8 +158,6 @@ class SimonGame(private val lifecycleScope: LifecycleCoroutineScope,
             val buttonClient = sequenceClient[i]
 
             if (buttonGame != buttonClient) {
-                // Réinitialiser les séquences
-
                 return false
             }
         }
@@ -159,7 +171,6 @@ class SimonGame(private val lifecycleScope: LifecycleCoroutineScope,
             clearSequence(sequenceClient)
             // Ajouter un nouveau bouton à la séquence du jeu
             addRandomBtnTosequence(sequenceGame, buttons)
-            // Continuer le jeu
             lightOnOffBtn(sequenceGame)
         }
         return true

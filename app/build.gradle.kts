@@ -37,6 +37,7 @@ android {
     /* Ce bloc est ajouté afin d'activer le databinding sur notre projet */
     buildFeatures {
         dataBinding = true
+        viewBinding = true
     }
 }
 
@@ -50,6 +51,9 @@ dependencies {
 
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.6")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.6")
+    implementation("androidx.annotation:annotation:1.7.1")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
 
 
 
