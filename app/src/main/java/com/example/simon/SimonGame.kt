@@ -129,7 +129,6 @@ class SimonGame(private val lifecycleScope: LifecycleCoroutineScope,
 
                 val result = checkSequence(sequenceGame, sequenceClient, buttons)
                 if (!result) {
-                    sendScore()
                     fragment.findNavController().navigate(R.id.resultFragment)
                     break
                 }
@@ -171,8 +170,4 @@ class SimonGame(private val lifecycleScope: LifecycleCoroutineScope,
         return score
     }
 
-    private fun sendScore() {
-        val action = (score)
-        fragment.findNavController().navigate(action)
-    }
 }
