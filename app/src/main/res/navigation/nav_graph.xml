@@ -63,4 +63,12 @@
             android:id="@+id/action_resultFragment_to_homeFragment2"
             app:destination="@id/homeFragment2" />
     </fragment>
+    <activity
+        android:id="@+id/login"
+        android:name="com.example.simon.activities.Login"
+        android:label="Login" />
+    <activity
+        android:id="@+id/register"
+        android:name="com.example.simon.activities.Register"
+        android:label="Register" />
 </navigation>
