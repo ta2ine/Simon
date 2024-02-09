@@ -58,7 +58,7 @@ class HomeFragment : Fragment() {
             startActivity(intent)
         }
 
-        easyBtn.isChecked = true
+        mediumBtn.isChecked = true
         val playButton = binding.playBtn
         playButton.setOnClickListener {
             val checkedId = binding.radioGroup.checkedRadioButtonId
