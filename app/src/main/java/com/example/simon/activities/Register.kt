@@ -60,7 +60,9 @@ class Register : AppCompatActivity() {
                         startActivity(intent)
                     } else {
                         Log.w(TAG, "createUserWithEmail:failure", task.exception)
-                        Toast.makeText(this, "Authentication failed.", Toast.LENGTH_SHORT).show()
+                        var probleme = ""
+                        if(password.length < 6) {probleme = "Password must be at least 6 entries long"}
+                        Toast.makeText(this, "Registering failed."+probleme, Toast.LENGTH_SHORT).show()
                     }
                 }
 

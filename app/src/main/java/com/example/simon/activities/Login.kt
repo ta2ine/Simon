@@ -23,7 +23,8 @@ class Login : AppCompatActivity() {
         if (currentUser != null) {
             val intent = Intent(this, MainActivity::class.java)
             intent.putExtra("key", "value")
-            startActivity(intent)        }
+            startActivity(intent)
+        }
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,9 +64,11 @@ class Login : AppCompatActivity() {
                     progressBar.visibility = View.GONE
                     if (task.isSuccessful) {
                         // Sign in success, update UI with the signed-in user's information
+                        Log.d(TAG, "signInWithEmail:success") //affichage journal
                         val intent = Intent(this, MainActivity::class.java)
                         intent.putExtra("key", "value")
                         startActivity(intent)
+                        finish() //pour terminer l'activité de connexion
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w(TAG, "signInWithEmail:failure", task.exception)
