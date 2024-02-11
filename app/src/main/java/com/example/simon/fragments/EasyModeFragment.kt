@@ -10,6 +10,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.example.simon.R
 import com.example.simon.SimonGame
@@ -18,10 +19,10 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.random.Random
 
-class EasyModeFragment : Fragment() {
+class EasyModeFragment : Fragment(), SimonGame.GameEventListener {
 
     private lateinit var binding: FragmentEasyModeBinding // Data binding
-    private var score = 0
+   private lateinit var navController: NavController
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,6 +40,7 @@ class EasyModeFragment : Fragment() {
         homeButton.setOnClickListener {
             findNavController().navigate(R.id.homeFragment2)
         }
+        navController = findNavController()
 
         val lifecycleScope = viewLifecycleOwner.lifecycleScope
         val btnIds = listOf(R.id.btn1, R.id.btn2, R.id.btn3, R.id.btn4)
@@ -48,8 +50,20 @@ class EasyModeFragment : Fragment() {
             scoreText,
             this,
             view,
-            btnIds)
+            btnIds,
+            this)
         simonGame.playGame()
     }
+
+    override fun onGameEnd(score: Int) {
+        navigateToResultFragment(score)
+    }
+
+    private fun navigateToResultFragment(score: Int) {
+        val action = EasyModeFragmentDirections.actionEasyModeToResultFragment(score)
+        //findNavController().navigate(action)
+        navController.navigate(action)
+    }
+
 
 }

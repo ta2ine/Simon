@@ -25,6 +25,7 @@ class Register : AppCompatActivity() {
             val intent = Intent(this, Login::class.java)
             intent.putExtra("key", "value")
             startActivity(intent)
+            finish()
         }
 
 
@@ -58,6 +59,7 @@ class Register : AppCompatActivity() {
                         val intent = Intent(this, Login::class.java)
                         intent.putExtra("key", "value")
                         startActivity(intent)
+                        finish()
                     } else {
                         Log.w(TAG, "createUserWithEmail:failure", task.exception)
                         var probleme = ""

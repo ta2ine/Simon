@@ -6,7 +6,9 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleCoroutineScope
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import com.example.simon.fragments.EasyModeFragment
 import com.example.simon.fragments.ResultFragment
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -16,11 +18,15 @@ class SimonGame(private val lifecycleScope: LifecycleCoroutineScope,
                 private val textView: TextView,
                 private val fragment: Fragment,
                 private val view: View,
-                private val btnIds: List<Int>) {
+                private val btnIds: List<Int>,
+                private val gameEventListener: GameEventListener) {
 
     private var score = 0
     val btns = mutableListOf<Button>()
 
+    fun getScore(): Int {
+        return score
+    }
     fun playGame() {
         val sequenceClient: MutableList<Button> = mutableListOf()
 
@@ -143,11 +149,21 @@ class SimonGame(private val lifecycleScope: LifecycleCoroutineScope,
 
                 val result = checkSequence(sequenceGame, sequenceClient, buttons)
                 if (!result) {
-                    fragment.findNavController().navigate(R.id.resultFragment)
+                    //fragment.findNavController().navigate(R.id.resultFragment)
+                    //val navController = fragment.requireActivity().findNavController(R.id.resultFragment)
+                    //EasyModeFragment.navigateToResultFragment(score)
+                    gameEnd()
                     break
                 }
             }
         }
+    }
+
+    interface GameEventListener {
+        fun onGameEnd(score: Int)
+    }
+    fun gameEnd() {
+        gameEventListener.onGameEnd(score)
     }
 
     private fun checkSequence(sequenceGame: MutableList<Button>, sequenceClient: MutableList<Button>, buttons: List<Button>): Boolean {

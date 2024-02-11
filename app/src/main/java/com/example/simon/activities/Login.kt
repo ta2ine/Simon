@@ -24,6 +24,7 @@ class Login : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             intent.putExtra("key", "value")
             startActivity(intent)
+            finish()
         }
     }
     override fun onCreate(savedInstanceState: Bundle?) {

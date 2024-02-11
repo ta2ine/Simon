@@ -9,12 +9,16 @@
         android:id="@+id/EasyMode"
         android:name="com.example.simon.fragments.EasyModeFragment"
         android:label="fragment_easy_mode" >
-        <action
+        <!--<action
             android:id="@+id/action_EasyMode_to_homeFragment2"
-            app:destination="@id/homeFragment2" />
+            app:destination="@id/homeFragment2" />-->
         <action
             android:id="@+id/action_EasyMode_to_resultFragment"
-            app:destination="@id/resultFragment" />
+            app:destination="@id/resultFragment" >
+            <argument
+                android:name="score"
+                app:argType="integer"/>
+        </action>
     </fragment>
     <fragment
         android:id="@+id/homeFragment2"
@@ -40,7 +44,11 @@
             app:destination="@id/homeFragment2" />
         <action
             android:id="@+id/action_mediumModeFragment_to_resultFragment"
-            app:destination="@id/resultFragment" />
+            app:destination="@id/resultFragment" >
+        <argument
+            android:name="score"
+            app:argType="integer"/>
+        </action>
     </fragment>
     <fragment
         android:id="@+id/hardModeFragment"
@@ -52,13 +60,18 @@
             app:destination="@id/homeFragment2" />
         <action
             android:id="@+id/action_hardModeFragment_to_resultFragment"
-            app:destination="@id/resultFragment" />
+            app:destination="@id/resultFragment" >
+        <argument
+            android:name="score"
+            app:argType="integer"/>
+        </action>
     </fragment>
     <fragment
         android:id="@+id/resultFragment"
         android:name="com.example.simon.fragments.ResultFragment"
         android:label="fragment_result"
-        tools:layout="@layout/fragment_result" >
+        tools:layout="@layout/fragment_result"
+        app:navGraph="@navigation/nav_graph">
         <action
             android:id="@+id/action_resultFragment_to_homeFragment2"
             app:destination="@id/homeFragment2" />
