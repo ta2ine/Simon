@@ -53,12 +53,11 @@ class HardModeFragment : Fragment(), SimonGame.GameEventListener {
     }
 
     override fun onGameEnd(score: Int) {
-        navigateToResultFragment(score)
+        navigateToResultFragment(score, "Hard")
     }
 
-    private fun navigateToResultFragment(score: Int) {
-        val action = HardModeFragmentDirections.actionHardModeFragmentToResultFragment(score)
-        //findNavController().navigate(action)
+    private fun navigateToResultFragment(score: Int, level:String) {
+        val action = HardModeFragmentDirections.actionHardModeFragmentToResultFragment(score, level)
         navController.navigate(action)
     }
 }

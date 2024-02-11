@@ -51,11 +51,11 @@ class MediumModeFragment : Fragment(), SimonGame.GameEventListener {
     }
 
     override fun onGameEnd(score: Int) {
-        navigateToResultFragment(score)
+        navigateToResultFragment(score, "Medium")
     }
 
-    private fun navigateToResultFragment(score: Int) {
-        val action = MediumModeFragmentDirections.actionMediumModeFragmentToResultFragment(score)
+    private fun navigateToResultFragment(score: Int, level: String) {
+        val action = MediumModeFragmentDirections.actionMediumModeFragmentToResultFragment(score, level)
         //findNavController().navigate(action)
         navController.navigate(action)
     }

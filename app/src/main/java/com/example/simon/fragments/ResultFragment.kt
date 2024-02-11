@@ -1,7 +1,9 @@
 package com.example.simon.fragments
 
 import android.content.Intent
+import android.content.ContentValues
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,8 +12,12 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.simon.R
+import com.example.simon.data.DataScore
+import com.example.simon.data.envoieScoreEnLigne
 import com.example.simon.data.Score
 import com.example.simon.databinding.FragmentResultBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 
 class ResultFragment : Fragment() {
 
@@ -39,6 +45,18 @@ class ResultFragment : Fragment() {
         val scoreText = view.findViewById<TextView>(R.id.scoreText)
         scoreText.text = "Score: $score"
 
+        Log.w(ContentValues.TAG, "Vérification email :"+FirebaseAuth.getInstance().currentUser?.email)
+        val userId = FirebaseAuth.getInstance().currentUser?.uid //récupération de 'id courant
+        val level = arguments?.getString("level", "Easy") // Le niveau de difficulté renvoyé par le fragment précédent
+        Log.w(ContentValues.TAG, "Emplacement pour firebase : "+level+" score saisi : "+score)
+
+
+        val databaseReference = FirebaseDatabase.getInstance().getReference("scores/$level")
+
+
+        val dataScore = DataScore(userId, score, FirebaseAuth.getInstance().currentUser?.email)
+        envoieScoreEnLigne(databaseReference, dataScore, requireContext())
+
         val scoreBtn = view.findViewById<Button>(R.id.scoreBtn)
         scoreBtn.setOnClickListener {
             val intent = Intent()
@@ -52,4 +70,5 @@ class ResultFragment : Fragment() {
         }
 
     }
+
 }

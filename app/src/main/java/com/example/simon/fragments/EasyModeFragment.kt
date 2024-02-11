@@ -56,11 +56,11 @@ class EasyModeFragment : Fragment(), SimonGame.GameEventListener {
     }
 
     override fun onGameEnd(score: Int) {
-        navigateToResultFragment(score)
+        navigateToResultFragment(score, "Easy")
     }
 
-    private fun navigateToResultFragment(score: Int) {
-        val action = EasyModeFragmentDirections.actionEasyModeToResultFragment(score)
+    private fun navigateToResultFragment(score: Int ,level: String) {
+        val action = EasyModeFragmentDirections.actionEasyModeToResultFragment(score, level)
         //findNavController().navigate(action)
         navController.navigate(action)
     }
