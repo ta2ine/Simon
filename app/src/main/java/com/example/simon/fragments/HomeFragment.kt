@@ -107,15 +107,11 @@ class HomeFragment : Fragment() {
 
             }
         }
-
         refreshRecyclerView()
-
-
     }
 
     fun refreshRecyclerView(){
         //récupération des scores
-        val database = FirebaseDatabase.getInstance().reference
         getTop10UsersFromFirebase(level, requireContext()) { topUsers -> //défintion du recyclerView pour le classement
             val recyclerView = binding?.RecyclerView
             recyclerView?.layoutManager = LinearLayoutManager(requireContext()) //requireContext car on est dans un fragment ici

@@ -16,8 +16,10 @@ class AdapterClassement(val data: List<ScoreOnline>) : RecyclerView.Adapter<Adap
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val layout = LayoutInflater.from(parent.context).inflate(R.layout.item_view,
             parent, false)
-        return MyViewHolder(layout)
+        layout.layoutParams.height = // Ajustez la hauteur en fonction de votre layout d'élément
+            return MyViewHolder(layout)
     }
+
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.textView.text = data.get(position).name + "\t" +data.get(position).score
     }
