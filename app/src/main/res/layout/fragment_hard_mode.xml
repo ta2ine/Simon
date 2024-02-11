@@ -5,12 +5,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center|center_horizontal"
+        android:background="@color/vert6"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="HARD MODE"
+            android:textStyle="bold"
+            android:textColor="@color/vert1"
             android:textSize="50sp" />
 
         <LinearLayout
@@ -22,6 +25,7 @@
             <TextView
                 android:id="@+id/scoreText"
                 android:layout_width="wrap_content"
+                android:textColor="@color/vert1"
                 android:layout_height="wrap_content" />
         </LinearLayout>
 
@@ -156,7 +160,9 @@
             android:id="@+id/homeBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Home" />
+            android:textColor="@color/vert2"
+            android:text="Home"
+            android:backgroundTint="@color/vert5"/>
 
     </LinearLayout>
 

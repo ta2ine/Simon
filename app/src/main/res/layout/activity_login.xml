@@ -9,16 +9,18 @@
         android:gravity="center"
         android:orientation="vertical"
         tools:context=".activities.Login"
-        android:padding="20dp">
+        android:padding="20dp"
+        android:background="@color/vert6">
 
         <TextView
             android:id="@+id/textView3"
-            android:textSize="25sp"
+            android:textSize="30sp"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:text="Login" />
+            android:text="Login"
+            android:textColor="@color/vert1"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -44,13 +46,16 @@
             android:id="@+id/progressBar"
             android:visibility="gone"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"/>
 
         <Button
             android:id="@+id/btnLogin"
             android:text="Login"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/vert5"
+            android:textColor="@color/vert2"/>
 
         <TextView
             android:textStyle="bold"
@@ -60,7 +65,8 @@
             android:id="@+id/registerNow"
             android:text="Click to register"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:textColor="@color/vert1"/>
 
     </LinearLayout>
 </layout>

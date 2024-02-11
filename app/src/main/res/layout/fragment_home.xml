@@ -6,6 +6,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/vert6"
         tools:context=".MainActivity">
 
          <LinearLayout
@@ -27,13 +28,17 @@
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content"
                  android:gravity="center"
-                 android:text="TextView" />
+                 android:text="TextView"
+                 android:textColor="@color/vert1"/>
 
             <Button
                 android:id="@+id/playBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Play" />
+                android:text="Play"
+                android:textStyle="bold"
+                android:textColor="@color/vert2"
+                app:backgroundTint="@color/vert5"/>
 
             <RadioGroup
                 android:id="@+id/radioGroup"
@@ -45,19 +50,25 @@
                     android:id="@+id/easyBtn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Easy" />
+                    android:text="Easy"
+                    android:textStyle="bold"
+                    android:textColor="@color/vert1"/>
 
                 <RadioButton
                     android:id="@+id/mediumBtn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Medium" />
+                    android:text="Medium"
+                    android:textStyle="bold"
+                    android:textColor="@color/vert1"/>
 
                 <RadioButton
                     android:id="@+id/hardBtn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Hard" />
+                    android:text="Hard"
+                    android:textStyle="bold"
+                    android:textColor="@color/vert1"/>
             </RadioGroup>
 
         </LinearLayout>
@@ -70,6 +81,8 @@
             android:layout_marginTop="100dp"
             android:text="Simon Game"
             android:textSize="40sp"
+            android:textColor="@color/vert1"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/logOutBtn" />
 
@@ -83,8 +96,8 @@
             android:layout_marginBottom="100dp"
 
             android:text="Logout"
-            android:textColor="@color/black"
-            app:backgroundTint="@color/white"
+            android:textColor="@color/vert2"
+            app:backgroundTint="@color/vert5"
             app:layout_constraintBottom_toTopOf="@+id/textView2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
