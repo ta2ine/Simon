@@ -11,15 +11,16 @@ class AdapterClassement(val data: List<ScoreOnline>) : RecyclerView.Adapter<Adap
 
     private val limite = 10
     class MyViewHolder(val row: View) : RecyclerView.ViewHolder(row) {
-        val textView = row.findViewById<TextView>(R.id.number)
+        val nameTextView = row.findViewById<TextView>(R.id.nameTextView)
+        val scoreTextView = row.findViewById<TextView>(R.id.scoreTextView)
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val layout = LayoutInflater.from(parent.context).inflate(R.layout.item_view,
-            parent, false)
+        val layout = LayoutInflater.from(parent.context).inflate(R.layout.item_view, parent, false)
         return MyViewHolder(layout)
     }
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.textView.text = data.get(position).name + "\t" +data.get(position).score
+        holder.nameTextView.text = data.get(position).name
+        holder.scoreTextView.text = data.get(position).score.toString()
     }
     override fun getItemCount(): Int = data.size
 

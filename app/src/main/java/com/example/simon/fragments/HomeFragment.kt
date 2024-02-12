@@ -47,7 +47,6 @@ class HomeFragment : Fragment() {
         val mediumBtn = binding.mediumBtn
         val hardBtn = binding.hardBtn
 
-
         if (currentUser == null){
                 val intent = Intent(requireActivity(), Login::class.java)
                 intent.putExtra("key", "value")

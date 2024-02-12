@@ -61,7 +61,7 @@ class ResultFragment : Fragment() {
         scoreBtn.setOnClickListener {
             val intent = Intent()
             intent.action = Intent.ACTION_SEND
-            intent.putExtra(Intent.EXTRA_TEXT, score)
+            intent.putExtra(Intent.EXTRA_TEXT, "Mon score est de "+score.toString()+" peux-tu faire mieux ??")
             intent.type="text/plain"
 
             startActivity(Intent.createChooser(intent,"Envoyer à :"))
