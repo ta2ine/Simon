@@ -10,8 +10,8 @@
         tools:context=".MainActivity">
 
         <LinearLayout
-            android:layout_width="283dp"
-            android:layout_height="315dp"
+            android:layout_width="320dp"
+            android:layout_height="294dp"
             android:layout_marginStart="67dp"
             android:layout_marginTop="133dp"
             android:layout_marginEnd="67dp"
@@ -71,18 +71,26 @@
                     android:textStyle="bold" />
             </RadioGroup>
 
+            <TextView
+                android:id="@+id/Tableau_des_scores"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:text="@string/Tableau_des_scores"
+                android:textColor="@color/vert1" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/RecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="0dp"
-                android:scrollbars="vertical"
                 android:clipToPadding="false"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="217dp"
                 android:paddingTop="0dp"
-                android:paddingBottom="0dp"/>
-
+                android:paddingBottom="0dp"
+                android:scrollbars="vertical"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="217dp" />
 
         </LinearLayout>
 
